@@ -1,33 +1,82 @@
-HELP.md
+# ===================================================================
+# Fichiers de log
+# Ne jamais versionner les fichiers de log qui peuvent contenir des données sensibles.
+# ===================================================================
+*.log
+
+# ===================================================================
+# Fichiers générés par le build (Maven / Gradle)
+# Le dossier 'target' contient les .class compilés, les .jar, .war, etc.
+# ===================================================================
 target/
 .mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### STS ###
+# ===================================================================
+# Fichiers de configuration des IDEs
+# Ces fichiers contiennent souvent des chemins locaux ou des préférences personnelles.
+# ===================================================================
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+### Eclipse / STS ###
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+.sts4-cache/
 
 ### VS Code ###
-.vscode/
+# Ignorez les configurations de lancement personnelles et l'état de la session.
+# NE PAS ignorer .vscode/settings.json ou .vscode/extensions.json
+# si vous voulez partager des réglages et extensions recommandées avec l'équipe.
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json # Décommentez si vous voulez partager la configuration de lancement
+
+# ===================================================================
+# Fichiers et dossiers du système d'exploitation
+# Inutile de les partager, ils sont générés par le SE.
+# ===================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===================================================================
+# Fichiers de configuration sensibles (SÉCURITÉ)
+# Ne JAMAIS versionner les mots de passe, clés d'API, etc.
+# Utilisez un fichier d'exemple que chaque développeur copie et complète.
+# ===================================================================
+# Ignorez le fichier de configuration principal qui contient les secrets
+application.properties
+application.yml
+application.yaml
+
+# Fournissez plutôt un fichier d'exemple dans votre dépôt
+!application-example.properties
+!application-example.yml
+!application-example.yaml
+
+# Ou si vous utilisez des profils Spring, ne versionnez que les profils non sensibles
+# Par exemple, versionnez application-dev.properties mais pas application-prod.properties
+application-prod.properties
+application-prod.yml
+
+# Fichiers d'environnement
+.env
