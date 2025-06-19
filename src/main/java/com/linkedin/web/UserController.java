@@ -2,15 +2,14 @@ package com.linkedin.web;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.linkedin.data.User;
 import com.linkedin.service.UserService;
 
-@Controller
+@RestController // ce contrôleur est un contrôleur rest
 @RequestMapping("/") // il intercepte toutes les requêtes http de l'application
 public class UserController {
 
@@ -24,14 +23,10 @@ public class UserController {
 	// qui va intercepter toutes les requêtes http de type GET qui seront destinées
 	// à la classe users
 	@GetMapping("users") //
-	public String getUsers(Model model) {
+	public List<User> getUsers() {
 
-		List<User> users = userService.getAllUsers();
-		// on passe users au model
-		model.addAttribute("users", users);
-		// on retourne la vue utilisée pour afficher les données representée par une
-		// page html qui s'appelle vue
-		return "UserView";
+		return userService.getAllUsers();
+
 	}
 
 }
