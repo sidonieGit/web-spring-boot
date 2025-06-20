@@ -2,36 +2,51 @@ package com.linkedin.web;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.linkedin.data.User;
 import com.linkedin.service.UserService;
 
-@Controller
-@RequestMapping("/") // il intercepte toutes les requêtes http de l'application
+@RestController
+@RequestMapping("api/user") // pour intercepter les requêtes http qui se font sur user
 public class UserController {
 
 	private final UserService userService;
 
-	// dans le constructeur on injecte le service utilisé pour récupérer les données
-	public UserController(UserService personService) {
-		this.userService = personService;
+	public UserController(UserService userService) {
+		this.userService = userService;
 	}
 
-	// qui va intercepter toutes les requêtes http de type GET qui seront destinées
-	// à la classe users
-	@GetMapping("users") //
-	public String getUsers(Model model) {
+	@GetMapping
+	public List<User> getUsers() {
+		return userService.findAllUsers();
+	}
 
-		List<User> users = userService.getAllUsers();
-		// on passe users au model
-		model.addAttribute("users", users);
-		// on retourne la vue utilisée pour afficher les données representée par une
-		// page html qui s'appelle vue
-		return "UserView";
+	@PostMapping
+	public void addUser(@RequestBody User user) {
+		userService.addUser(user);
+	}
+
+	@GetMapping(path = "{id}")
+	public User getUserById(@PathVariable("id") Long id) {
+		return userService.findUserById(id);
+	}
+
+	@DeleteMapping(path = "{id}")
+	public void deleteUserById(@PathVariable("id") Long id) {
+		userService.deleteUserById(id);
+	}
+
+	@PutMapping
+	public void updateUser(@RequestBody User user) {
+		userService.updateUser(user);
 	}
 
 }

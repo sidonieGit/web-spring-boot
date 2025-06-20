@@ -31,6 +31,18 @@
 	</properties>
 	<dependencies>
 	<dependency>
+<!-- pour la persistance des données -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- represent les données persistées dans la base de données//une instance de BD en mémoire-->
+		<dependency>
+		  <groupId>com.h2database</groupId>
+		  <artifactId>h2</artifactId>
+		  <scope>runtime</scope>
+		</dependency>
+	<!-- moteur de template pour generer la vue quand ce sont de appli web basé MVC -->
+	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
