@@ -30,6 +30,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+	<!-- pour la gestion des endpoints monitoring -->
+	<dependency>
+			<groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
 	<dependency>
 <!-- pour la persistance des données -->
 			<groupId>org.springframework.boot</groupId>
